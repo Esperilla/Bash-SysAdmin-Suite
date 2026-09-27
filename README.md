@@ -21,10 +21,10 @@ The project uses a multi-container Docker laboratory with a static internal netw
 
   | Service    | Container                 | IP           | Role                                    |
   | ---------- | ------------------------- | ------------ | --------------------------------------- |
-  | `cliente`  | `proyecto_admon_cliente`  | `172.20.0.2` | Main client (mounts `/workspace`)       |
-  | `servidor1` | `proyecto_admon_servidor1` | `172.20.0.5` | Remote server 1                         |
-  | `servidor2` | `proyecto_admon_servidor2` | `172.20.0.6` | Remote server 2                         |
-  | `servidor3` | `proyecto_admon_servidor3` | `172.20.0.7` | Remote server 3                         |
+  | `client`  | `proyecto_admon_client`  | `172.20.0.2` | Main client (mounts `/workspace`)       |
+  | `server1` | `proyecto_admon_server1` | `172.20.0.5` | Remote server 1                         |
+  | `server2` | `proyecto_admon_server2` | `172.20.0.6` | Remote server 2                         |
+  | `server3` | `proyecto_admon_server3` | `172.20.0.7` | Remote server 3                         |
 
   All containers run in **privileged** mode with cgroup access to support `systemd`.
 
@@ -36,11 +36,11 @@ The project uses a multi-container Docker laboratory with a static internal netw
    ```
 2. Enter the client container:
    ```bash
-   docker compose exec cliente bash
+   docker compose exec client bash
    ```
 3. Enter a remote server, for example:
    ```bash
-   docker compose exec servidor1 bash
+   docker compose exec server1 bash
    ```
 
 ---

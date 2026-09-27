@@ -19,10 +19,10 @@ El proyecto utiliza un laboratorio multi-contenedor basado en Docker con una red
 
   | Servicio    | Contenedor                 | IP           | Rol                                    |
   | ----------- | -------------------------- | ------------ | -------------------------------------- |
-  | `cliente`   | `proyecto_admon_cliente`   | `172.20.0.2` | Cliente principal (monta `/workspace`) |
-  | `servidor1` | `proyecto_admon_servidor1` | `172.20.0.5` | Servidor remoto 1                      |
-  | `servidor2` | `proyecto_admon_servidor2` | `172.20.0.6` | Servidor remoto 2                      |
-  | `servidor3` | `proyecto_admon_servidor3` | `172.20.0.7` | Servidor remoto 3                      |
+  | `client`    | `proyecto_admon_client`   | `172.20.0.2` | Cliente principal (monta `/workspace`) |
+  | `server1`   | `proyecto_admon_server1` | `172.20.0.5` | Servidor remoto 1                      |
+  | `server2`   | `proyecto_admon_server2` | `172.20.0.6` | Servidor remoto 2                      |
+  | `server3`   | `proyecto_admon_server3` | `172.20.0.7` | Servidor remoto 3                      |
 
   Todos los contenedores corren en modo **privilegiado** con acceso a cgroups para soportar `systemd`.
 
@@ -32,13 +32,13 @@ El proyecto utiliza un laboratorio multi-contenedor basado en Docker con una red
    ```bash
    docker compose up -d --build
    ```
-2. Entrar al contenedor cliente:
+2. Entrar al contenedor client:
    ```bash
-   docker compose exec cliente bash
+   docker compose exec client bash
    ```
 3. Entrar a un servidor remoto (ejemplo):
    ```bash
-   docker compose exec servidor1 bash
+   docker compose exec server1 bash
    ```
 
 ---
@@ -263,10 +263,10 @@ sudo chown supervisor:supervisor /var/log/gestion_automatizada.log
 
 ### Configuración SSH para ejecución remota
 
-Para usar `remote.sh` entre los contenedores del laboratorio, es necesario generar las llaves SSH en el contenedor cliente y copiarlas a los servidores:
+Para usar `remote.sh` entre los contenedores del laboratorio, es necesario generar las llaves SSH en el contenedor client y copiarlas a los servers:
 
 ```bash
-# En el contenedor cliente (172.20.0.2)
+# En el contenedor client (172.20.0.2)
 ssh-keygen -t ed25519 -C "supervisor"
 ssh-copy-id -i /home/supervisor/.ssh/id_ed25519 supervisor@172.20.0.5
 ssh-copy-id -i /home/supervisor/.ssh/id_ed25519 supervisor@172.20.0.6
