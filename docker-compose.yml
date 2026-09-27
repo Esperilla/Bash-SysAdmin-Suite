@@ -1,0 +1,54 @@
+services:
+  client:
+    build: .
+    container_name: client
+    networks:
+      redProyecto:
+        ipv4_address: 172.20.0.2
+    volumes:
+      - .:/workspace
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    tty: true
+    stdin_open: true
+    restart: always
+    privileged: true
+
+  server1:
+    build: .
+    container_name: server1
+    networks:
+      redProyecto:
+        ipv4_address: 172.20.0.5
+    tty: true
+    stdin_open: true
+    restart: always
+    privileged: true
+
+  server2:
+    build: .
+    container_name: server2
+    networks:
+      redProyecto:
+        ipv4_address: 172.20.0.6
+    tty: true
+    stdin_open: true
+    restart: always
+    privileged: true
+
+  server3:
+    build: .
+    container_name: server3
+    networks:
+      redProyecto:
+        ipv4_address: 172.20.0.7
+    tty: true
+    stdin_open: true
+    restart: always
+    privileged: true
+
+networks:
+  redProyecto:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
